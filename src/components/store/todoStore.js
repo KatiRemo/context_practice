@@ -26,18 +26,25 @@ const initialState = {
 export const NotesContext = React.createContext();
 
 const reducer = (state, action) => { //action is the dispatch state for example ADD NOTE
-    if(action.type === 'ADD_NOTE') {
-    return {notes: [...state.notes, {
-        id: new Date().valueOf(), 
-        title: action.todo.title, 
-        task: action.todo.task, 
-        done: false
-    },
-    ],
-};
-    }
-        return state;
-    
+    switch (action.type) {
+        case 'ADD_NOTE': 
+        return {
+            notes: [
+                ...state.notes, 
+                {
+            id: new Date().valueOf(), 
+            // title: action.todo.title, 
+            // task: action.todo.task, 
+            ...action.todo,
+            done: false
+        },
+        ],
+    };
+    case 'DONE_NOTE':
+        return;
+        default:
+            return state;
+} 
 };
 
 export const Provider = ({children}) => {
@@ -50,9 +57,17 @@ export const Provider = ({children}) => {
         });
     }
 
+    const doneTodo = (todo) => {
+        dispatch({
+            type: 'DONE_NOTE',
+            todo: todo
+        });
+    }
+
     const value = {
         notes: state.notes,
         addTodoItem: addTodoItem,
+        doneTodo: doneTodo,
     }
 
     return <NotesContext.Provider value={value}>
