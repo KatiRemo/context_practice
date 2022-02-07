@@ -41,11 +41,21 @@ const reducer = (state, action) => { //action is the dispatch state for example 
         ],
     };
     case 'REMOVE_NOTE':
+//         const newTodos = [...state.notes];
+//         newTodos.splice(
+//             newTodos.findIndex((item) => item.id === action.id), 1
+//         )
+//         
+    const updateArray = state.notes.filter((item) => item.id !== action.id);
+    return {
+         ...state,
+        notes: updateArray,
+    };
+    default:
         return state;
-        default:
-            return state;
-} 
-};
+        } 
+        };
+
 
 export const Provider = ({children}) => {
     const [state, dispatch] = useReducer(reducer, initialState);

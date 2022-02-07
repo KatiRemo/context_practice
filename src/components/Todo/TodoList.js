@@ -7,8 +7,22 @@ const TodoList = () => {
   const ctx = useContext(NotesContext);
 
   const removeHandler = (id) => {
-    console.log('I was clicked')
     ctx.removeTodo(id);
+  //   let item = id.some(item => item.name == id.name);
+
+  //   if(!item) {
+  //     TodoList(prevState => [...prevState, id]);
+  //   }
+  //   else {
+  //     const newArr = [...id]; 
+  //     newArr.splice(newArr.findIndex(
+  //       item => item.name == item.id), 1
+  //       );
+  //     removeHandler(newArr);  
+  //     // localStorage.removeItem(pokemon.name);
+  //   }
+  //   console.log();
+  // };
   }
 
   return (
