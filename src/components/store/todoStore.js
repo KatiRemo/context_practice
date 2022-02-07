@@ -35,13 +35,13 @@ const reducer = (state, action) => { //action is the dispatch state for example 
             id: new Date().valueOf(), 
             // title: action.todo.title, 
             // task: action.todo.task, 
-            ...action.todo,
+            ...action.todo, //this is a neater way for the two actions above
             done: false
         },
         ],
     };
-    case 'DONE_NOTE':
-        return;
+    case 'REMOVE_NOTE':
+        return state;
         default:
             return state;
 } 
@@ -57,17 +57,17 @@ export const Provider = ({children}) => {
         });
     }
 
-    const doneTodo = (todo) => {
+    const removeTodo = (id) => {
         dispatch({
-            type: 'DONE_NOTE',
-            todo: todo
+            type: 'REMOVE_NOTE',
+            id: id
         });
     }
 
     const value = {
         notes: state.notes,
         addTodoItem: addTodoItem,
-        doneTodo: doneTodo,
+        removeTodo: removeTodo,
     }
 
     return <NotesContext.Provider value={value}>
