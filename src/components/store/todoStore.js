@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 
-const ininitalState = {
+const initialState = {
     notes: [
         {
           id: 1,
@@ -25,8 +25,30 @@ const ininitalState = {
 
 export const NotesContext = React.createContext();
 
+const reducer = (state, action) => {
+    if(action.type === 'ADD_NOTE') {
+        console.log('whoa');
+    }
+    else {
+        return state;
+    }
+};
+
 export const Provider = ({children}) => {
-    return <NotesContext.Provider value = {ininitalState}>
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    const addTodoItem = () => {
+        dispatch({
+            type: 'ADD_NOTE',
+        });
+    }
+
+    const value = {
+        notes: state.notes,
+        addTodoItem: addTodoItem,
+    }
+
+    return <NotesContext.Provider value = {value}>
          {children} 
          </NotesContext.Provider>;
 };
