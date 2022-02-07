@@ -25,13 +25,12 @@ const initialState = {
 
 export const NotesContext = React.createContext();
 
-const reducer = (state, action) => {
+const reducer = (state, action) => { //action is the dispatch state for example ADD NOTE
     if(action.type === 'ADD_NOTE') {
-        console.log('whoa');
+        console.log('whoa, this is coming from the reducer!!!');
     }
-    else {
         return state;
-    }
+    
 };
 
 export const Provider = ({children}) => {
@@ -48,7 +47,7 @@ export const Provider = ({children}) => {
         addTodoItem: addTodoItem,
     }
 
-    return <NotesContext.Provider value = {value}>
+    return <NotesContext.Provider value={value}>
          {children} 
          </NotesContext.Provider>;
 };

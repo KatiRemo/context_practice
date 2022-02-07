@@ -5,7 +5,6 @@ import classes from "./TodoList.module.css";
 
 const TodoList = () => {
   const context = useContext(NotesContext);
-  console.log(context)
 
   return (
     <div className={classes.todos}>

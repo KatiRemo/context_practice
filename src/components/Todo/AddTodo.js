@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, { useState, useContext } from "react";
 import classes from "./AddTodo.module.css";
 import Button from "../UI/Button";
 
+import { NotesContext } from "../store/todoStore" 
 
-const AddTodo = ({ addHandler }) => {
+const AddTodo = () => {
   const [todo, setTodo] = useState({title: '', task: ''});
+  const ctx = useContext(NotesContext); //which context we want to use!! 
 
   const changeHandler = (e) => {
     const {name, value} = e.target;
@@ -15,6 +17,12 @@ const AddTodo = ({ addHandler }) => {
     }));
     console.log(todo);
   };
+
+  const addHandler = (e) => {
+    e.preventDefault();
+    console.log('onsubmit form');
+    ctx.addTodoItem();
+  }
 
   return (
     <form onSubmit={addHandler} className={classes.input}>
