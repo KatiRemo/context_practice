@@ -20,8 +20,7 @@ const AddTodo = () => {
 
   const addHandler = (e) => {
     e.preventDefault();
-    console.log('onsubmit form');
-    ctx.addTodoItem();
+    ctx.addTodoItem(todo);
   }
 
   return (

@@ -27,7 +27,14 @@ export const NotesContext = React.createContext();
 
 const reducer = (state, action) => { //action is the dispatch state for example ADD NOTE
     if(action.type === 'ADD_NOTE') {
-        console.log('whoa, this is coming from the reducer!!!');
+    return {notes: [...state.notes, {
+        id: new Date().valueOf(), 
+        title: action.todo.title, 
+        task: action.todo.task, 
+        done: false
+    },
+    ],
+};
     }
         return state;
     
@@ -36,9 +43,10 @@ const reducer = (state, action) => { //action is the dispatch state for example 
 export const Provider = ({children}) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const addTodoItem = () => {
+    const addTodoItem = (todo) => {
         dispatch({
             type: 'ADD_NOTE',
+            todo: todo,
         });
     }
 
