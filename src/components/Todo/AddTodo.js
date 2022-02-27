@@ -20,7 +20,7 @@ const AddTodo = () => {
   const addHandler = (e) => {
     e.preventDefault();
     ctx.addTodoItem(todo);
-  }
+  };
 
   return (
     <form onSubmit={addHandler} className={classes.input}>

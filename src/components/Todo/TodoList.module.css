@@ -13,4 +13,25 @@
   border: 1px solid #333;
   margin: 0.5rem 0;
   padding: 0.5rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.todo.done h2,
+.todo.done p {
+  background-color: #838996;
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.delete {
+  position: absolute;
+  color: #8878c3;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.delete:hover {
+  color: white;
 }
